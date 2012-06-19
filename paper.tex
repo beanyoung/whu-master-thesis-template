@@ -1,0 +1,58 @@
+\documentclass[a4paper,cs4size,UTF8,unixfonts,openany]{ctexbook}
+
+\usepackage{whu_thesis}
+
+% 论文分类号
+\gdef\typenum{TP393}
+% 论文密级
+\gdef\secretlevel{~~~~~}
+% UDC
+\gdef\udc{~~~~~}
+% 学校编号
+\gdef\schoolnum{10486}
+% 论文题目
+\gdef\thesistitle{使用\LaTeX 写毕业论文}
+\gdef\ethesistitle{Write graduate thesis using latex}
+% 姓名
+\gdef\studentname{陈冰玉}
+\gdef\estudentname{Chen Bingyu}
+% 学号
+\gdef\studentnum{1010101010101}
+% 导师
+\gdef\advisorname{赵大牛}
+\gdef\advisortitle{副教授}
+\gdef\eadvisorname{Zhao Bigcow}
+% 专业名称
+\gdef\specialty{计算机软件与理论}
+% 研究方向
+\gdef\researcharea{计算机图形图像处理}
+% 院系名称
+\gdef\schoolname{计算机学院}
+
+% 培养院系
+\gdef\school{计算机学院}
+
+\begin{document}
+% page
+\pagestyle{empty}
+\maketitle
+
+\makeabstract{paper/abstract.tex} % 摘要
+
+\cleardoublepage
+\tableofcontents
+
+\cleardoublepage
+% 页码数字编号
+\pagenumbering{arabic}
+% 页码重新编号
+\setcounter{page}{1}
+
+% \setlength{\voffset}{-15mm}
+\input{paper/ch1.tex} % 绪论
+\input{paper/ch2.tex} % 例子
+\input{paper/ref.tex} % 参考文献
+\input{paper/research.tex} % 科研成果
+\input{paper/thx.tex} % 致谢
+
+\end{document}

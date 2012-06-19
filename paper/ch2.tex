@@ -1,0 +1,43 @@
+\chapter{例子}
+\section{图片}
+图片统一放在image路径下，在插入图片的时候写图片相对路径。
+
+多个子图\ref{fig:logos:a}\ref{fig:logos:b}\ref{fig:logos:c}
+
+\begin{figure}[hp]
+\centering
+\subfigure[]
+{\label{fig:logos:a}
+\includegraphics[angle=0, width=0.3\textwidth]{./image/cs-logo.png}}
+\subfigure[]
+{\label{fig:logos:b}
+\includegraphics[angle=0, width=0.3\textwidth]{./image/cs-logo.png}}
+\subfigure[]
+{\label{fig:logos:c}
+\includegraphics[angle=0, width=0.3\textwidth]{./image/cs-logo.png}}
+\caption{多个计算机学院logo}
+\label{fig:logos}
+\end{figure}
+
+单独一图\ref{fig:logo}
+\begin{figure}[hp]
+\centering
+\includegraphics[angle=0, width=0.7\textwidth]{./image/cs-logo.png}
+\caption{一个计算机学院logo}
+\label{fig:logo}
+\end{figure}
+
+
+\section{公式}
+行内公式$\mathbf{x}(s)=[x(s),y(s)],s\in[0,1]$，带编号的公式
+\begin{equation} \label{eq:energy}
+E=\int_{0}^{1}\frac{1}{2}(\alpha|\mathbf{x}'(s)|^{2}+\beta|\mathbf{x}''(s)|^{2})+E_{ext}(\mathbf{x}(s)) \ud s
+\end{equation}
+
+无编号的公式
+\begin{displaymath}
+u_{t}=\frac{1}{\Delta t}(u_{i,j}^{n+1}-u_{i,j}^{n})
+\end{displaymath}
+
+\section{参考文献}
+请看论文\cite{fem}.

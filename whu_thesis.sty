@@ -1,0 +1,233 @@
+% whu graduate thesis package
+% AUTHOR: BeanYoung.CN@gmail.com
+\ProvidesPackage{whu_thesis}
+
+\NeedsTeXFormat{LaTeX2e}
+\usepackage{cite} % 参考文献引用编号自动合并
+\usepackage{tocloft} % 目录
+\usepackage{graphicx} % 插入图片
+\usepackage{amsmath} % \eqref
+\usepackage[all]{xy} % 流程图
+\usepackage{setspace} % \begin{spacing}
+\usepackage{CJKfntef} % CJKunderline
+\usepackage{fancyhdr} %首行缩进
+\usepackage{indentfirst} %首行缩进
+\makeatletter 
+\let\c@lofdepth\relax 
+\let\c@lotdepth\relax 
+\makeatother 
+\usepackage{subfigure} 
+\usepackage{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 格式
+% 中文缩进
+\setlength{\parindent}{2em}
+
+% 全局字体
+%\setmainfont{AR PL SungtiL GB}
+
+% 段间距
+\setlength{\parskip}{0em}
+
+% 行距 20磅
+\setlength{\baselineskip}{20pt}
+% \linespread{1.6}
+
+% 目录
+\CTEXoptions[contentsname={\heiti\zihao{-2}\centerline{目~~~~录}}]
+% 修改目录bug
+\makeatletter
+\renewcommand{\numberline}[1]{%
+\settowidth\@tempdimb{#1\hspace{0.5em}}%
+\ifdim\@tempdima<\@tempdimb%
+  \@tempdima=\@tempdimb%
+\fi%
+\hb@xt@\@tempdima{\@cftbsnum #1\@cftasnum\hfil}\@cftasnumb}
+\makeatother
+
+% 目录中章后加上点
+\makeatletter
+\def\@bfdottedtocline#1#2#3#4#5{%
+    \ifnum #1>\c@tocdepth \else
+    \vskip \z@ \@plus.2\p@
+    {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+        \parindent #2\relax\@afterindenttrue
+        \interlinepenalty\@M
+        \leavevmode \bfseries
+        \@tempdima #3\relax
+        \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+        {#4}\normalfont\nobreak
+        \leaders\hbox{$\m@th
+            \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill
+        \nobreak
+        \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+    \par}%
+\fi}
+\renewcommand*\l@chapter{\@bfdottedtocline{0}{0em}{1.5em}}
+\makeatother
+
+% A4 210*297
+% 页边距
+\setlength{\oddsidemargin}{11mm}
+\setlength{\evensidemargin}{11mm}
+\setlength{\headheight}{0pt}
+\setlength{\voffset}{0mm}
+\setlength{\headsep}{0mm}
+\setlength{\textheight}{230mm}
+% 积分符号d
+\newcommand{\ud}{\mathrm{d}}
+
+% 去除chapter, section, subsection前面的空白
+\CTEXsetup[format={\raggedright}]{chapter}
+\CTEXsetup[format={\raggedright}]{section}
+\CTEXsetup[format={\raggedright}]{subsection}
+
+% 第一章改为 1
+\CTEXsetup[name={,},number={\arabic{chapter}}]{chapter}
+
+% 标题格式
+\CTEXsetup[nameformat={\heiti\zihao{-2}}]{chapter}
+\CTEXsetup[nameformat={\heiti\zihao{3}}]{section}
+\CTEXsetup[nameformat={\heiti\zihao{4}}]{subsection}
+\CTEXsetup[titleformat={\heiti\zihao{-2}}]{chapter}
+\CTEXsetup[titleformat={\heiti\zihao{3}}]{section}
+\CTEXsetup[titleformat={\heiti\zihao{4}}]{subsection}
+
+\CTEXsetup[beforeskip={0pt}]{chapter}
+\CTEXsetup[afterskip={15pt}]{chapter}
+
+% 图标标题
+% 定义图标标题
+\usepackage{caption}
+\renewcommand{\captionfont}{\kaishu\zihao{-5}}
+\renewcommand{\captionlabelfont}{}
+\renewcommand{\subcapfont}{\kaishu\zihao{-5}}
+
+% 参考文献
+\renewcommand\bibname{\center\heiti\zihao{4}参考文献}
+
+% 摘要
+\newcommand{\makeabstract}[1]{
+    \cleardoublepage
+    \pagestyle{plain}
+    % 罗马数字
+    \pagenumbering{roman}
+    % 重新编号
+    \setcounter{page}{1}
+    \input{#1} % 摘要
+}
+
+% 致谢标题
+\newcommand{\thxtitle}[1]{
+    \cleardoublepage
+    \phantomsection
+    \begin{center}
+        \heiti\zihao{4}#1
+    \end{center}
+    \addcontentsline{toc}{chapter}{#1}
+}
+
+% 其他chapter标题
+\newcommand{\otherchapter}[1]{{
+    \chapter*{#1}
+    \addcontentsline{toc}{chapter}{#1}
+}
+}
+
+% 其他section标题
+\newcommand{\othersection}[1]{{
+        \heiti\zihao{3}\section*{#1}
+    \addcontentsline{toc}{section}{#1}
+}
+}
+
+\renewcommand{\labelenumi}{[\arabic{enumi}]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{毕业论文}
+\CTEXdigits{\dateyear}{2012}
+% 用来做表格中带下划线的单元格
+\newcommand{\filltable}[1]{\CJKunderline{~\hfill#1 \hfill~}}
+
+%make title
+\renewcommand{\maketitle}{
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+%\vskip 47bp
+
+\begin{center}
+\noindent
+\fangsong\zihao{4}
+\begin{tabular}{p{0.12\textwidth} p{0.2\textwidth} p{0.3\textwidth} p{0.1\textwidth} p{0.2\textwidth}}
+分\hfill 类\hfill 号 & \filltable{\typenum} & & 密\hfill 级 & \filltable{\secretlevel} \\
+U\hfill D\hfill C & \filltable{\udc} & & 编\hfill 号 & \filltable{\schoolnum}
+\end{tabular}
+
+\vskip 20mm
+
+\songti\zihao{2} 武~~~汉~~~大~~~学\\
+硕~~~士~~~学~~~位~~~论~~~文
+
+\vskip 25mm
+
+\kaishu\zihao{1}{\thesistitle}
+
+\vskip 25mm
+
+\songti\zihao{4}
+\begin{tabular}{p{0.4\textwidth} p{0.35\textwidth}}
+研\hfill 究\hfill 生\hfill 姓\hfill 名： & \studentname \\
+研\hfill 究\hfill 生\hfill 学\hfill 号： & \studentnum \\
+指\hfill 导\hfill 教\hfill 师\hfill 姓\hfill 名\hfill 、\hfill 职\hfill 称： & \advisorname\ \advisortitle \\
+学\hfill 科\hfill、 \hfill 专\hfill 业\hfill 名\hfill 称： & \specialty \\
+研\hfill 究\hfill 方\hfill 向： & \researcharea
+\end{tabular}
+
+\vskip 25mm
+
+\heiti\zihao{3}
+\dateyear 年五月
+\end{center}
+\cleardoublepage
+
+\begin{center}
+\songti\zihao{3}
+Dissertation Submitted to\\
+Wuhan University\\
+For the Degree of Master
+
+\vskip 25mm
+
+\songti\zihao{2}
+\ethesistitle
+
+\vskip 50mm
+\songti\zihao{4}
+\textbf{Auther:}\estudentname \\
+\textbf{Advisor:}\eadvisorname
+
+\vskip 50mm
+\textbf{May,2012}
+\end{center}
+
+\cleardoublepage
+\begin{center}
+\heiti\zihao{-2}
+郑~~重~~声~~明
+\end{center}
+
+\songti\zihao{4}
+\indent
+本人的学位论文是在导师指导下独立撰写并完成的，学位论文没有剽窃、抄袭、造假等违反学术道德、学术规范和侵权行为，否则，本人愿意承担由此而产生的法律责任和法律后果，特此郑重声明。
+
+\begin{flushright}
+学位论文作者（签名）：~~~~~~~~~~~~~
+
+年~~~~~~月~~~~~~日
+\end{flushright}
+
+\end{titlepage}
+}
